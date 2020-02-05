@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Toolbar, Typography, Link } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
+import LoginButton from './LoginButton';
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +28,7 @@ export default function AppTitleBar() {
             Shackmeets
           </Typography>
         </Link>
-        <Button color="secondary" variant="contained">Login</Button>
+        <LoginButton />
       </Toolbar>
     </AppBar>
   );
