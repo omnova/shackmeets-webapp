@@ -1,8 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './containers/home/Home';
+
 import AppTitleBar from './components/AppTitleBar';
 import Footer from './components/Footer';
+import Home from './containers/Home';
+import Archive from './containers/Archive';
+import Preferences from './containers/Preferences';
 
 
 export default function MainLayout() {
@@ -11,6 +14,8 @@ export default function MainLayout() {
       <AppTitleBar />
       <Switch>
         <Route exact path='/' component={Home} />
+        <Route exact path='/archive' component={Archive} />
+        <Route exact path='/preferences' component={Preferences} />
       </Switch>
       <Footer />
     </Router>
