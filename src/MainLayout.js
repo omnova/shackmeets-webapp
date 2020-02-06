@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import AppTitleBar from './components/AppTitleBar';
-import Footer from './components/Footer';
+import Footer from './components/AppFooter';
 import Home from './containers/Home';
 import Archive from './containers/Archive';
 import Preferences from './containers/Preferences';
