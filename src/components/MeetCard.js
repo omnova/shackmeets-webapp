@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, CardActions, Typography, Button } from '@material-ui/core';
+import { Card, CardContent, CardActions, Typography, Button, Divider } from '@material-ui/core';
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,9 +28,9 @@ export default function MeetCard() {
   };
 
   return (   
-    <Card className={classes.root}>
+    <Card square variant="outlined" className={classes.root}>
       <CardContent>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h6">
           {meet.title}
         </Typography>
         <Typography variant="body2" className={classes.organizerText} color="textSecondary" gutterBottom>
@@ -40,6 +40,7 @@ export default function MeetCard() {
           {meet.description}  
         </Typography>
       </CardContent>
+      <Divider />
       <CardActions>
         <Button size="small" color="primary">RSVP</Button>
       </CardActions>
