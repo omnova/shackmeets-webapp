@@ -1,0 +1,52 @@
+{
+    "paths": [
+        {
+            "name": "/meets",
+            "lambdaFunction": "ShackmeetsApiMeetsFunction",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/users",
+            "lambdaFunction": "ShackmeetsApiUsersFunction",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "ShackmeetsApi",
+    "apiName": "ShackmeetsApi",
+    "functionArns": [
+        {
+            "lambdaFunction": "ShackmeetsApiMeetsFunction"
+        },
+        {
+            "lambdaFunction": "ShackmeetsApiUsersFunction"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-shackmeets-webapp-smdev-213112-authRole",
+        "unAuthRoleName": "amplify-shackmeets-webapp-smdev-213112-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "ShackmeetsApiMeetsFunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "ShackmeetsApiUsersFunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
