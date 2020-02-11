@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-//import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { makeStyles } from '@material-ui/styles';
 import { Container } from '@material-ui/core';
 
@@ -7,6 +7,9 @@ import { API } from 'aws-amplify';
 
 import UpcomingMeets from '../components/UpcomingMeets';
 import FilterButton from '../components/FilterButton';
+import OrganizedMeets from '../components/OrganizedMeets';
+import AttendingMeets from '../components/AttendingMeets';
+import PastMeets from '../components/PastMeets';
 
 
 const useStyles = makeStyles(theme => ({
@@ -18,9 +21,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home() {
   const classes = useStyles();
-  const [filter, setFilter] = useState('UPCOMING');
+  let location = useLocation();
+  let history = useHistory();
+
+  let filter = 'UPCOMING';
+
+  if (location.pathname === "/attending")
+    filter = 'ATTENDING';
+  else if (location.pathname === "/organizing")
+    filter = 'ORGANIZING';
+  else if (location.pathname === "/archive")
+    filter = 'ARCHIVE';  
+
   const [meets, setMeets] = useState([]);
-  //let history = useHistory();
 
   useEffect(() => {
     const loadMeets = () => {
@@ -50,19 +63,17 @@ export default function Home() {
 
   const handleFilterChange = (newFilter) => {
     if (filter !== newFilter) {
-      setFilter(newFilter);
+      let path = '/';
 
-      // let path = '/';
+      // TODO: make better
+      if (newFilter === "ATTENDING")
+        path = '/attending';
+      else if (newFilter === "ORGANIZING")
+        path = '/organizing';
+      else if (newFilter === "ARCHIVE")
+        path = '/archive';
 
-      // // TODO: make better
-      // if (newFilter === "ATTENDING")
-      //   path = '/attending';
-      // else if (newFilter === "ORGANIZING")
-      //   path = '/organizing';
-      // else if (newFilter === "ARCHIVE")
-      //   path = '/archive';
-
-      //history.push(path);
+      history.push(path);
     }
   }
 
@@ -70,7 +81,10 @@ export default function Home() {
   return (   
     <Container maxWidth="md" className={classes.root}>      
       <FilterButton filter={filter} onChange={handleFilterChange} />
-      <UpcomingMeets meets={meets}/>
+      {filter === "UPCOMING" && <UpcomingMeets meets={meets}/>}
+      {filter === "ATTENDING" && <AttendingMeets meets={meets}/>}
+      {filter === "ORGANIZING" && <OrganizedMeets meets={meets}/>}
+      {filter === "ARCHIVE" && <PastMeets meets={meets}/>}
     </Container>
   );
 }
