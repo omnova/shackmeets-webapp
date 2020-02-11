@@ -77,6 +77,60 @@ app.get('/meets', function(req, res) {
 });
 
 
+app.get('/meets/attending', function(req, res) {
+  
+  let meets = [{
+    id: 2,
+    title: 'Shackmeet 2',
+    description: 'This is not a good idea we shouldn\'t do it!',
+    organizer: 'omnova',
+    locations: [
+      {
+        date: '01/03/2021',
+        time: '15:00:00',
+        name: 'Cidercade',
+        address: '2777 Irving Blvd #200, Dallas, TX 75207'
+      }
+    ],
+    attendees: {
+      length: 4
+    },
+    interested: {
+      length: 4
+    }
+  }];  
+
+  res.json(meets);
+});
+
+
+app.get('/meets/organizing', function(req, res) {
+  
+  let meets = [{
+    id: 1,
+    title: 'Shackmeet 1',
+    description: 'This is a fantastic meet we should do it!',
+    organizer: 'omnova',
+    locations: [
+      {
+        date: '01/01/2021',
+        time: '9:00:00',
+        name: 'Cidercade',
+        address: '2777 Irving Blvd #200, Dallas, TX 75207'
+      }
+    ],
+    attendees: {
+      length: 4
+    },
+    interested: {
+      length: 4
+    }
+  }];  
+
+  res.json(meets);
+});
+
+
 app.get('/meets/archive', function(req, res) {
   
   let meets = [{
