@@ -120,6 +120,7 @@ app.get('/meets/archive', function(req, res) {
     }
   }];  
 
+  res.json(meets);
 });
 
 /****************************
