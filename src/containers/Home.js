@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/styles';
 import { Container } from '@material-ui/core';
 
@@ -20,7 +20,7 @@ export default function Home() {
   const classes = useStyles();
   const [filter, setFilter] = useState('UPCOMING');
   const [meets, setMeets] = useState([]);
-  let history = useHistory();
+  //let history = useHistory();
 
   useEffect(() => {
     const loadMeets = () => {
@@ -52,17 +52,17 @@ export default function Home() {
     if (filter !== newFilter) {
       setFilter(newFilter);
 
-      let path = '/';
+      // let path = '/';
 
-      // TODO: make better
-      if (filter === "ATTENDING")
-        path = '/attending';
-      else if (filter === "ORGANIZING")
-        path = '/organizing';
-      else if (filter === "ARCHIVE")
-        path = '/archive';
+      // // TODO: make better
+      // if (newFilter === "ATTENDING")
+      //   path = '/attending';
+      // else if (newFilter === "ORGANIZING")
+      //   path = '/organizing';
+      // else if (newFilter === "ARCHIVE")
+      //   path = '/archive';
 
-      history.push(path);
+      //history.push(path);
     }
   }
 
