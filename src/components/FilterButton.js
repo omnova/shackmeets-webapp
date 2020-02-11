@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Menu, MenuItem } from '@material-ui/core';
+import { Button, Menu, MenuItem, Divider } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 
 
@@ -41,6 +41,7 @@ export default function FilterButton(props) {
         <MenuItem onClick={() => filterOnChange('UPCOMING')}>Upcoming</MenuItem>
         <MenuItem onClick={() => filterOnChange('ATTENDING')}>Attending</MenuItem>
         <MenuItem onClick={() => filterOnChange('ORGANIZING')}>Organizing</MenuItem>
+        <Divider />
         <MenuItem onClick={() => filterOnChange('ARCHIVE')}>Archive</MenuItem>
       </Menu>
     </React.Fragment>

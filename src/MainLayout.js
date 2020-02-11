@@ -12,10 +12,21 @@ export default function MainLayout() {
     <Router>
       <AppTitleBar />
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/attending' component={Home} />
-        <Route exact path='/organizing' component={Home} />
-        <Route exact path='/archive' component={Home} />
+        <Route exact path='/'>
+          <Home filter="UPCOMING" />
+        </Route>
+        <Route exact path='/attending'>
+          <Home filter="ATTENDING" />
+        </Route>
+        <Route exact path='/organizing'>
+          <Home filter="ORGANIZING" />
+        </Route>
+        <Route exact path='/archive'>
+          <Home filter="ARCHIVE" />
+        </Route>
+        <Route exact path='/attending'>
+          <Home filter="UPCOMING" />
+        </Route>
         <Route exact path='/preferences' component={Preferences} />
       </Switch>
       <Footer />

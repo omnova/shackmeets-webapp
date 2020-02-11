@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/styles';
-import { Container } from '@material-ui/core';
+import { Container, Grid } from '@material-ui/core';
 
 import { API } from 'aws-amplify';
 
@@ -10,28 +10,24 @@ import FilterButton from '../components/FilterButton';
 import OrganizedMeets from '../components/OrganizedMeets';
 import AttendingMeets from '../components/AttendingMeets';
 import PastMeets from '../components/PastMeets';
+import AddMeetButton from '../components/AddMeetButton';
 
 
 const useStyles = makeStyles(theme => ({
   root: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2)
-  }  
+  },
+  addMeetButton: {
+    textAlign: 'right'
+  }
 }));
 
-export default function Home() {
+export default function Home(props) {
   const classes = useStyles();
-  let location = useLocation();
   let history = useHistory();
 
-  let filter = 'UPCOMING';
-
-  if (location.pathname === "/attending")
-    filter = 'ATTENDING';
-  else if (location.pathname === "/organizing")
-    filter = 'ORGANIZING';
-  else if (location.pathname === "/archive")
-    filter = 'ARCHIVE';  
+  let filter = props.filter;
 
   const [meets, setMeets] = useState([]);
 
@@ -79,8 +75,22 @@ export default function Home() {
 
 
   return (   
-    <Container maxWidth="md" className={classes.root}>      
-      <FilterButton filter={filter} onChange={handleFilterChange} />
+    <Container maxWidth="md" className={classes.root}>
+      
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="center"
+      >
+        <Grid item xs={6}>          
+          <FilterButton filter={filter} onChange={handleFilterChange} />
+        </Grid>
+        <Grid item xs={6} className={classes.addMeetButton}>          
+          <AddMeetButton />
+        </Grid>
+      </Grid>
+
       {filter === "UPCOMING" && <UpcomingMeets meets={meets}/>}
       {filter === "ATTENDING" && <AttendingMeets meets={meets}/>}
       {filter === "ORGANIZING" && <OrganizedMeets meets={meets}/>}
