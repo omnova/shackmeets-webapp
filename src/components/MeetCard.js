@@ -14,18 +14,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function MeetCard() {
+export default function MeetCard(props) {
   const classes = useStyles();
-
-  const meet = {
-    title: 'Shackmeet of DOOM!!',
-    description: 'Blah blah blah shackmeet!',
-    date: '01/20/2099',
-    organizer: {
-      userId: 1,
-      username: 'omnova'
-    }
-  };
+  const meet = props.meet;
 
   return (   
     <Card square variant="outlined" className={classes.root}>
@@ -34,7 +25,7 @@ export default function MeetCard() {
           {meet.title}
         </Typography>
         <Typography variant="body2" className={classes.organizerText} color="textSecondary" gutterBottom>
-          Organized by {meet.organizer.username}
+          Organized by {meet.organizer}
         </Typography>       
         <Typography variant="body2" component="p">
           {meet.description}  

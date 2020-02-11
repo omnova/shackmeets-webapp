@@ -11,15 +11,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function UpcomingMeets() {
+export default function UpcomingMeets(props) {
   const classes = useStyles();
+  const meets = props.meets;
+  console.log(meets);
+
+  const meetCards = meets.map(meet => <MeetCard key={meet.id} meet={meet} />);
 
   return (   
     <div>
       <Typography variant="subtitle1" className={classes.headerText}>
         Upcoming Shackmeets
       </Typography>
-      <MeetCard />
+      {meetCards}
     </div>
   );
 }
