@@ -26,61 +26,44 @@ app.use(function(req, res, next) {
 });
 
 
-/**********************
- * Example get method *
- **********************/
-
-app.get('/users', function(req, res) {
+// Get user information
+app.get('/user', function(req, res) {
   // Add your code here
   res.json({success: 'get call succeed!', url: req.url});
 });
 
-app.get('/users/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
+
+// Log user in
+app.post('/login', function(req, res) {
+  let response = {
+    id: 1,
+    token: 'blahblah'
+  };  
+
+  res.json(response);
 });
 
-/****************************
-* Example post method *
-****************************/
 
-app.post('/users', function(req, res) {
+// Log user out (may not need)
+app.post('/login', function(req, res) {
   // Add your code here
   res.json({success: 'post call succeed!', url: req.url, body: req.body})
 });
 
-app.post('/users/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'post call succeed!', url: req.url, body: req.body})
-});
 
-/****************************
-* Example put method *
-****************************/
-
-app.put('/users', function(req, res) {
+// Update user preferences
+app.put('/preferences', function(req, res) {
   // Add your code here
   res.json({success: 'put call succeed!', url: req.url, body: req.body})
 });
 
-app.put('/users/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'put call succeed!', url: req.url, body: req.body})
-});
 
-/****************************
-* Example delete method *
-****************************/
-
+// Delete user account
 app.delete('/users', function(req, res) {
   // Add your code here
   res.json({success: 'delete call succeed!', url: req.url});
 });
 
-app.delete('/users/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'delete call succeed!', url: req.url});
-});
 
 app.listen(3000, function() {
     console.log("App started")

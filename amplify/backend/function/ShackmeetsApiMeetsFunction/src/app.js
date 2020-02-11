@@ -26,10 +26,8 @@ app.use(function(req, res, next) {
 });
 
 
-/**********************
- * Example get method *
- **********************/
 
+// Get upcoming meets
 app.get('/meets', function(req, res) {
   
   let meets = [{
@@ -77,6 +75,7 @@ app.get('/meets', function(req, res) {
 });
 
 
+// Get meets the user is attending
 app.get('/meets/attending', function(req, res) {
   
   let meets = [{
@@ -104,6 +103,7 @@ app.get('/meets/attending', function(req, res) {
 });
 
 
+// Get meets the user is organizing
 app.get('/meets/organizing', function(req, res) {
   
   let meets = [{
@@ -131,6 +131,7 @@ app.get('/meets/organizing', function(req, res) {
 });
 
 
+// Get past meets
 app.get('/meets/archive', function(req, res) {
   
   let meets = [{
@@ -177,47 +178,39 @@ app.get('/meets/archive', function(req, res) {
   res.json(meets);
 });
 
-/****************************
-* Example post method *
-****************************/
 
+// Add a new meet
 app.post('/meets', function(req, res) {
   // Add your code here
   res.json({success: 'post call succeed!', url: req.url, body: req.body})
 });
 
-app.post('/meets/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'post call succeed!', url: req.url, body: req.body})
-});
 
-/****************************
-* Example put method *
-****************************/
-
-app.put('/meets', function(req, res) {
-  // Add your code here
-  res.json({success: 'put call succeed!', url: req.url, body: req.body})
-});
-
+// Update an existing meet
 app.put('/meets/*', function(req, res) {
   // Add your code here
   res.json({success: 'put call succeed!', url: req.url, body: req.body})
 });
 
-/****************************
-* Example delete method *
-****************************/
 
-app.delete('/meets', function(req, res) {
-  // Add your code here
-  res.json({success: 'delete call succeed!', url: req.url});
-});
-
+// Delete an existing meet
 app.delete('/meets/*', function(req, res) {
   // Add your code here
   res.json({success: 'delete call succeed!', url: req.url});
 });
+
+
+// RSVP
+
+
+// Set a user's RSVP
+app.post('/meets/:id/rsvp', function(req, res) {
+  // Add your code here
+  res.json({success: 'put call succeed!', url: req.url, body: req.body})
+});
+
+
+
 
 app.listen(3000, function() {
     console.log("App started")
