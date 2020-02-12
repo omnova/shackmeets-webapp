@@ -38,6 +38,7 @@ function AddMeetDialog(props) {
              label="Title" 
              fullWidth 
              variant="outlined"
+             size="small"
              autoFocus />
           </div>       
           
@@ -49,6 +50,7 @@ function AddMeetDialog(props) {
               multiline
               rows="4"
               rowsMax="50"
+              size="small"
               variant="outlined"/>
           </div>
           
@@ -61,6 +63,7 @@ function AddMeetDialog(props) {
              id="LocationName" 
              label="Name" 
              fullWidth 
+             size="small"
              variant="outlined" />
           </div>   
 
@@ -71,6 +74,7 @@ function AddMeetDialog(props) {
             fullWidth 
             multiline
             rows="4"
+            size="small"
             variant="outlined" />
           </div> 
 
