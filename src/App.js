@@ -6,14 +6,17 @@ import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 
 import MainLayout from './MainLayout';
+import AuthProvider from './contexts/auth/AuthProvider';
 
 Amplify.configure(awsconfig);
 
 function App() { 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />    
-      <MainLayout />
+      <AuthProvider>
+        <CssBaseline />    
+        <MainLayout />
+      </AuthProvider>
     </ThemeProvider>
   );
 }
