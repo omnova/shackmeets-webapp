@@ -1,12 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
+import { makeStyles } from '@material-ui/styles';
 import { Button, Menu, MenuItem } from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import AuthContext from '../contexts/auth/AuthContext';
-import { useHistory } from 'react-router-dom';
+
+
+const useStyles = makeStyles(theme => ({
+  menu: {
+    marginTop: theme.spacing(5)
+  }
+}));
+
 
 export default function UserMenu() {
-  let history = useHistory();
+  const classes = useStyles();
   let auth = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -31,7 +38,6 @@ export default function UserMenu() {
         variant="contained" 
         disableElevation
         onClick={handleClick}
-        startIcon={<AccountCircleIcon />}
         endIcon={<KeyboardArrowDownIcon />}
       >
         {auth.user.username}
@@ -42,6 +48,7 @@ export default function UserMenu() {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        className={classes.menu}
       >
         <MenuItem onClick={navigatePreferences}>Preferences</MenuItem>
         <MenuItem onClick={auth.logout}>Log out</MenuItem>       

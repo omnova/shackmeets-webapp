@@ -1,10 +1,19 @@
 import React, { useContext } from 'react';
+import { makeStyles } from '@material-ui/styles';
 import { Button, Menu, MenuItem, Divider } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import AuthContext from '../contexts/auth/AuthContext';
 
 
+const useStyles = makeStyles(theme => ({
+  menu: {
+    marginTop: theme.spacing(6)
+  }
+}));
+
+
 export default function FilterButton(props) {
+  const classes = useStyles();
   const filter = props.filter;
   let auth = useContext(AuthContext);
 
@@ -40,6 +49,7 @@ export default function FilterButton(props) {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        className={classes.menu}
       >
         <MenuItem onClick={() => filterOnChange('UPCOMING')}>Upcoming</MenuItem>
         {auth.user && <MenuItem onClick={() => filterOnChange('ATTENDING')}>Attending</MenuItem>}
