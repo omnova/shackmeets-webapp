@@ -25,7 +25,7 @@ export default function AddMeetButton() {
         startIcon={<AddIcon />}
         onClick={handleClick}
       >
-        Add Shackmeet
+        Add Meet
       </Button>
       <AddMeetDialog open={isDialogOpen} onClose={handleDialogClose} />
     </React.Fragment>
