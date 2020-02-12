@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.light
   },
   dialog: {
-    backgroundColor: theme.palette.background.light
+    //backgroundColor: theme.palette.background.light
   }
 }));
 

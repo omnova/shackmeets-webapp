@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import AuthContext from '../../contexts/auth/AuthContext';
 
 function LoginDialog({open, onClose}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const login = async () => { 
-    const blah = username + ' ' + password; 
-
-    alert(blah);
-  };  
+  let auth = useContext(AuthContext);
 
   const submit = async event => {
     event.preventDefault()
 
     try {
-      await login(username, password)
+      auth.login(username, password)
 
       onClose();
     } finally {

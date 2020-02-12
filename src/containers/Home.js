@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/styles';
 import { Container, Grid } from '@material-ui/core';
@@ -11,6 +11,7 @@ import OrganizedMeets from '../components/OrganizedMeets';
 import AttendingMeets from '../components/AttendingMeets';
 import PastMeets from '../components/PastMeets';
 import AddMeetButton from '../components/AddMeetButton';
+import AuthContext from '../contexts/auth/AuthContext';
 
 
 const useStyles = makeStyles(theme => ({
@@ -26,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 export default function Home(props) {
   const classes = useStyles();
   let history = useHistory();
+  let auth = useContext(AuthContext);
 
   let filter = props.filter;
 
@@ -87,7 +89,7 @@ export default function Home(props) {
           <FilterButton filter={filter} onChange={handleFilterChange} />
         </Grid>
         <Grid item xs={6} className={classes.addMeetButton}>          
-          <AddMeetButton />
+          {auth.user && <AddMeetButton />}
         </Grid>
       </Grid>
 

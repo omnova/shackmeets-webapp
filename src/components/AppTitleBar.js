@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Toolbar, Typography, Link } from '@material-ui/core';
 import LoginButton from './LoginButton';
+import AuthContext from '../contexts/auth/AuthContext';
+import UserMenu from './UserMenu';
 
 
 const useStyles = makeStyles(theme => ({
@@ -19,6 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function AppTitleBar() {
   const classes = useStyles();
+  const auth = useContext(AuthContext);
 
   return (   
     <AppBar position="static">
@@ -28,7 +31,8 @@ export default function AppTitleBar() {
             Shackmeets
           </Typography>
         </Link>
-        <LoginButton />
+        {!auth.user && <LoginButton />}
+        {auth.user && <UserMenu /> }
       </Toolbar>
     </AppBar>
   );

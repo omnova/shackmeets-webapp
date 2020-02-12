@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Menu, MenuItem, Divider } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
+import AuthContext from '../contexts/auth/AuthContext';
 
 
 export default function FilterButton(props) {
   const filter = props.filter;
+  let auth = useContext(AuthContext);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = event => {
@@ -39,8 +42,8 @@ export default function FilterButton(props) {
         onClose={handleClose}
       >
         <MenuItem onClick={() => filterOnChange('UPCOMING')}>Upcoming</MenuItem>
-        <MenuItem onClick={() => filterOnChange('ATTENDING')}>Attending</MenuItem>
-        <MenuItem onClick={() => filterOnChange('ORGANIZING')}>Organizing</MenuItem>
+        {auth.user && <MenuItem onClick={() => filterOnChange('ATTENDING')}>Attending</MenuItem>}
+        {auth.user && <MenuItem onClick={() => filterOnChange('ORGANIZING')}>Organizing</MenuItem>}
         <Divider />
         <MenuItem onClick={() => filterOnChange('ARCHIVE')}>Archive</MenuItem>
       </Menu>
