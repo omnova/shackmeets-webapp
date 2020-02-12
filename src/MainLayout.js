@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import AppTitleBar from './components/AppTitleBar';
-import Footer from './components/AppFooter';
+import AppFooter from './components/AppFooter';
 import Home from './containers/Home';
 import Preferences from './containers/Preferences';
 
@@ -29,7 +29,7 @@ export default function MainLayout() {
         </Route>
         <Route exact path='/preferences' component={Preferences} />
       </Switch>
-      <Footer />
+      <AppFooter />
     </Router>
   );
 }
