@@ -1,4 +1,11 @@
 var axios = require('axios');
+
+/* Must have a credentials.js file in the same directory with the following contents:
+module.exports = {
+  username: 'Shackmeets',
+  password: '<real password here>'
+}; 
+*/
 var chattyCredentials = require('./credentials');
 
 
