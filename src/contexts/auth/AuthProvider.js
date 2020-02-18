@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Auth } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify';
 import AuthContext from './AuthContext';
 
 
@@ -25,8 +25,33 @@ function AuthProvider({ children }) {
   }, []);
 
 
-  const login = useCallback(() => {
-    setUser({id: 1, username: 'omnova'})
+  const login = useCallback(async (username, password) => {
+    let apiName = 'ShackmeetsApi';
+    let path = '/users/login'; 
+    let request = {
+      body: {
+        username: username,
+        password: password
+      }
+    };
+
+    const response = await API.post(apiName, path, request).then(response => {
+      console.log(response);
+
+      if (response.isValid) {
+        setUser({id: 1, username: 'omnova'})
+
+        return true;
+      }
+      else {
+        console.log('Invalid login');
+        return false
+      }
+    }).catch(error => {
+      console.log(error.response)
+      return false;
+    });
+    
   }, []);
 
   const logout = useCallback(() => {

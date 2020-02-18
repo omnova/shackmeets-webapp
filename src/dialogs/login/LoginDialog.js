@@ -17,9 +17,11 @@ function LoginDialog({open, onClose}) {
     event.preventDefault()
 
     try {
-      auth.login(username, password)
+      const isValid = await auth.login(username, password);
 
-      onClose();
+      if (isValid)
+        onClose();
+        
     } finally {
       
     }

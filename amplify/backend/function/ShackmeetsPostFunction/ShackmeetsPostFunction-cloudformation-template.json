@@ -63,7 +63,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-shackmeets-webapp-smdev-213112-deployment",
-					"S3Key": "amplify-builds/ShackmeetsPostFunction-706d52563977696d4b68-build.zip"
+					"S3Key": "amplify-builds/ShackmeetsPostFunction-6c724a2f5741384a5053-build.zip"
 				}
 			}
 		},

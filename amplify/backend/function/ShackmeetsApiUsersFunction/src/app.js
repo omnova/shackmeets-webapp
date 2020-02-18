@@ -12,11 +12,13 @@ See the License for the specific language governing permissions and limitations 
 var express = require('express')
 var bodyParser = require('body-parser')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+var axios = require('axios');
 
 // declare a new express app
 var app = express()
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
+
 
 // Enable CORS for all methods
 app.use(function(req, res, next) {
@@ -27,32 +29,61 @@ app.use(function(req, res, next) {
 
 
 // Get user information
-app.get('/user', function(req, res) {
+app.get('/users', function(req, res) {
   // Add your code here
   res.json({success: 'get call succeed!', url: req.url});
 });
 
 
-// Log user in
-app.post('/login', function(req, res) {
-  let response = {
-    id: 1,
-    token: 'blahblah'
-  };  
+// Get user information
+app.post('/users', function(req, res) {
+  // Add your code here
+  res.json({success: 'get call succeed!', url: req.url});
+});
 
-  res.json(response);
+
+
+// Log user in
+app.post('/users/login', async function(req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  const uri = 'https://winchatty.com/v2/verifyCredentials';
+  const data = "username=" + encodeURIComponent(username) + '&password=' + encodeURIComponent(password);
+
+  try {
+    const response = await axios({
+      method: 'post',
+      url: uri,
+      headers: {
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: data
+    });
+    
+    if (response.data.isValid) {
+      res.json({isValid: true});
+    }
+    else {
+      res.json({isValid: false});
+    }
+  }
+  catch (ex) {
+    res.status(500).json(ex);
+  } 
 });
 
 
 // Log user out (may not need)
-app.post('/login', function(req, res) {
+app.post('/users/logout', function(req, res) {
   // Add your code here
   res.json({success: 'post call succeed!', url: req.url, body: req.body})
 });
 
 
 // Update user preferences
-app.put('/preferences', function(req, res) {
+app.put('/users/preferences', function(req, res) {
   // Add your code here
   res.json({success: 'put call succeed!', url: req.url, body: req.body})
 });

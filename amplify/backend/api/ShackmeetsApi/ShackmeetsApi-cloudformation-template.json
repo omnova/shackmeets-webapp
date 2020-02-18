@@ -136,7 +136,7 @@
                         "statusCode": "200",
                         "responseParameters": {
                           "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
-                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type'",
                           "method.response.header.Access-Control-Allow-Origin": "'*'"
                         }
                       }
@@ -235,7 +235,7 @@
                         "statusCode": "200",
                         "responseParameters": {
                           "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
-                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type'",
                           "method.response.header.Access-Control-Allow-Origin": "'*'"
                         }
                       }
@@ -335,7 +335,7 @@
                         "statusCode": "200",
                         "responseParameters": {
                           "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
-                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type'",
                           "method.response.header.Access-Control-Allow-Origin": "'*'"
                         }
                       }
@@ -434,7 +434,7 @@
                         "statusCode": "200",
                         "responseParameters": {
                           "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
-                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type'",
                           "method.response.header.Access-Control-Allow-Origin": "'*'"
                         }
                       }
@@ -616,7 +616,7 @@
         
         
         
-      "DeploymentAPIGWShackmeetsApi": {
+      "DeploymentAPIGWShackmeetsApid45352e5": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",
