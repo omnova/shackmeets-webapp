@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { API, Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import AuthContext from './AuthContext';
 
+Auth.configure({ authenticationFlowType: "USER_PASSWORD_AUTH"});
 
 function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
