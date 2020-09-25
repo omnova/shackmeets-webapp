@@ -34,7 +34,6 @@ node_modules/
 aws-exports.js
 awsconfiguration.json
 amplifyconfiguration.json
+amplify-build-config.json
 amplify-gradle-config.json
-amplifyxc.config
-amplify/backend/function/ShackmeetsNotificationsFunction/src/credentials.js
-amplify/backend/function/ShackmeetsPostFunction/src/credentials.js
+amplifytools.xcconfig

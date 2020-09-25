@@ -1,0 +1,5 @@
+{
+    "tableName": "ShackmeetsDynamo",
+    "partitionKeyName": "meets",
+    "partitionKeyType": "S"
+}

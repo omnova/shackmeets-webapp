@@ -5,7 +5,8 @@
             "lambdaFunction": "ShackmeetsApiMeetsFunction",
             "privacy": {
                 "open": true
-            }
+            },
+            "policyResourceName": "/meets"
         },
         {
             "name": "/users",
@@ -28,8 +29,8 @@
     "privacy": {
         "auth": 0,
         "unauth": 0,
-        "authRoleName": "amplify-shackmeets-webapp-smdev-213112-authRole",
-        "unAuthRoleName": "amplify-shackmeets-webapp-smdev-213112-unauthRole"
+        "authRoleName": "amplify-shackmeetswebapp-dev-03100-authRole",
+        "unAuthRoleName": "amplify-shackmeetswebapp-dev-03100-unauthRole"
     },
     "dependsOn": [
         {
@@ -49,5 +50,5 @@
             ]
         }
     ],
-    "uuid": "d45352e5"
+    "uuid": "f17ce1d8"
 }

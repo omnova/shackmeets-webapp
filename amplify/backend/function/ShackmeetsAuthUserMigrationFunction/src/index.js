@@ -1,4 +1,4 @@
-const axios = require('axios');
+const fetch = require('node-fetch');
 
 exports.handler = async (event, context, callback) => {
   const result = await tryMigrateUser(event, context);
@@ -27,6 +27,7 @@ async function tryMigrateUser(event, context) {
     }      
     else {
       // Return error to Amazon Cognito
+      console.log("Failed password check");
       return "Bad password";
     }
   }
@@ -39,21 +40,43 @@ async function checkShackCredentials(username, password) {
   const uri = 'https://winchatty.com/v2/verifyCredentials';
   const data = "username=" + encodeURIComponent(username) + '&password=' + encodeURIComponent(password);
 
+  console.log(data);
+
   try {
-    const response = await axios({
-      method: 'post',
-      url: uri,
+    // const response = await axios({
+    //   method: 'post',
+    //   url: uri,
+    //   headers: {
+    //     'Accept-Encoding': 'gzip, deflate, br',
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   },
+    //   data: data
+    // });
+
+    const response = await fetch(uri, {
+      method: 'POST',
       headers: {
         'Accept-Encoding': 'gzip, deflate, br',
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      data: data
+      body: data
     });
-    
-    
-    return response.isValid;
+  
+    const result = await response.json();
+    console.log(result);
+
+    if (result.isValid) {
+      console.log("shack credentials valid.");
+      return true;
+    }
+    else {
+      console.log("shack credentials invalid.");
+      return false;
+    }
   }     
   catch (ex) {
+    console.log("Exception during shack credential check.")
+    console.log(ex);
     return false;
   }
 }
