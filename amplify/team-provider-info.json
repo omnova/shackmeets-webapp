@@ -10,6 +10,14 @@
             "StackName": "amplify-shackmeets-webapp-smdev-213112",
             "StackId": "arn:aws:cloudformation:us-east-1:559873995369:stack/amplify-shackmeets-webapp-smdev-213112/142e6e80-47c8-11ea-ac52-0a3d3edde975",
             "AmplifyAppId": "d1vanm54av0xbt"
+        },
+        "categories": {
+            "function": {
+                "ShackmeetsApiUsersFunction": {}
+            },
+            "auth": {
+                "shackmeetswebappfefb0446": {}
+            }
         }
     }
 }

@@ -12,13 +12,11 @@ See the License for the specific language governing permissions and limitations 
 var express = require('express')
 var bodyParser = require('body-parser')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
-var axios = require('axios');
 
 // declare a new express app
 var app = express()
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
-
 
 // Enable CORS for all methods
 app.use(function(req, res, next) {
@@ -44,9 +42,9 @@ app.post('/users', function(req, res) {
 
 
 // Log user in
-app.post('/users/login', async function(req, res) {
-  const username = req.body.username;
-  const password = req.body.password;
+app.post('/users/login', function(req, res) {
+  const username = req.username;
+  const password = req.password;
 
   const uri = 'https://winchatty.com/v2/verifyCredentials';
   const data = "username=" + encodeURIComponent(username) + '&password=' + encodeURIComponent(password);
@@ -61,16 +59,27 @@ app.post('/users/login', async function(req, res) {
       },
       data: data
     });
-    
-    if (response.data.isValid) {
-      res.json({isValid: true});
+
+    if (response.isValid) {        
+      let result = {
+        isValid: true,
+        id: 1,
+        username: 'omnova',
+        token: 'blahblah'
+      };  
+
+      res.json(result);
     }
     else {
-      res.json({isValid: false});
+      res.status(500).json({
+        isValid: false
+      });
     }
   }
   catch (ex) {
-    res.status(500).json(ex);
+    res.status(500).json({
+      isValid: false
+    });
   } 
 });
 

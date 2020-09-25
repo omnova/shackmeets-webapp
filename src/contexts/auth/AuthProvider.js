@@ -26,40 +26,83 @@ function AuthProvider({ children }) {
 
 
   const login = useCallback(async (username, password) => {
-    let apiName = 'ShackmeetsApi';
-    let path = '/users/login'; 
-    let request = {
-      body: {
-        username: username,
-        password: password
-      }
-    };
+    // await Auth.signIn({
+    //   username, // Required, the username
+    //   password // Optional, the password
+    // }).then(user => console.log(user))
+    //   .catch(err => console.log(err));
 
-    const response = await API.post(apiName, path, request).then(response => {
-      console.log(response);
+    try {
+      Auth.configure({ authenticationFlowType: "USER_PASSWORD_AUTH"});
+      // Auth.configure({ authenticationFlowType: "CUSTOM_AUTH"});
 
-      if (response.isValid) {
-        setUser({id: 1, username: 'omnova'})
+      const user = await Auth.signIn(username, password);
 
-        return true;
-      }
-      else {
-        console.log('Invalid login');
-        return false
-      }
-    }).catch(error => {
-      console.log(error.response)
-      return false;
-    });
+      setUser(user);
+      return user;
+    } catch (error) {
+        console.log('error signing in', error);
+    }
+
+    // await Auth.signIn(username, password)
+    //   .then(user => {
+    //     console.log(user);
+    //     if (user.challengeName === 'CUSTOM_CHALLENGE') {
+    //         console.log ("CUSTOM_CHALLENGE");
+    //         // to send the answer of the custom challenge
+    //         Auth.sendCustomChallengeAnswer(user, password)
+    //             .then(user => console.log(user))
+    //             .catch(err => console.log(err));
+    //     } else if (user.challengeName === 'SHACKNEWS_PASSWORD') {
+    //       console.log ("SHACKNEWS_PASSWORD");
+    //       // to send the answer of the custom challenge
+    //       Auth.sendCustomChallengeAnswer(user, password)
+    //           .then(user => console.log(user))
+    //           .catch(err => console.log(err));
+    //   } else {
+    //         console.log(user);
+    //     }
+    //   })
+    //   .catch(err => console.log(err));
+
+
+    // let apiName = 'ShackmeetsApi';
+    // let path = '/users/login'; 
+    // let request = {
+    //   body: {
+    //     username: username,
+    //     password: password
+    //   }
+    // };
+
+    // const response = await API.post(apiName, path, request).then(response => {
+    //   console.log(response);
+
+    //   if (response.isValid) {
+    //     setUser({id: 1, username: 'omnova'})
+
+    //     return true;
+    //   }
+    //   else {
+    //     console.log('Invalid login');
+    //     return false
+    //   }
+    // }).catch(error => {
+    //   console.log(error.response)
+    //   return false;
+    // });
     
   }, []);
 
-  const logout = useCallback(() => {
-    setUser(null);
+  const logout = useCallback(async () => {
+    
+    try {
+      await Auth.signOut();
 
-    // Auth.signOut()
-    //   .then(window.location.href = signoutRedirectUrl)
-    //   .catch((err) => console.log(err));
+      setUser(null);
+    } catch (error) {
+        console.log('error signing out: ', error);
+    }
   }, []);
 
 
